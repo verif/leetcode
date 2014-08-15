@@ -1,0 +1,27 @@
+/*
+   Write a function that computes log2() using sqrt().
+*/
+
+#include <math.h> // for 'sqrt'
+#include <iostream>
+using namespace std;
+
+class LOG2 {
+public:
+    int log2(int val) {
+        if (val < 2) return 0;
+        if (val == 2) return 1;
+
+        int v1 = sqrt(val);
+        return log2(v1) * 2;
+    }
+};
+
+int main() {
+    LOG2 l;
+
+    cout << "reference: " << log2(16) << " Actual: " << l.log2(16) << endl;
+    cout << "reference: " << log2(1024) << " Actual: " << l.log2(1024) << endl;
+    cout << "reference: " << log2(65536) << " Actual: " << l.log2(65536) << endl;
+    cout << "reference: " << log2(999) << " Actual: " << l.log2(999) << endl;
+}

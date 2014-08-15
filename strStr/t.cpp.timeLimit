@@ -1,0 +1,44 @@
+/*
+   Implement strStr().
+
+   Returns a pointer to the first occurrence of needle in haystack, or null if
+   needle is not part of haystack.
+*/
+
+#include <iostream>
+
+class Solution {
+public:
+     bool isSameStr(const char* p1, const char* p2) {
+         while (*p1 && *p2) {
+             if (*p1 != *p2) return false;
+             p1++;
+             p2++;
+         }
+
+         return (!*p2);
+     }
+
+     char *strStr(char *haystack, char *needle) {
+         if (!haystack || !needle) return NULL;
+         char *p = haystack;
+
+         while (*p) {
+             while (*p && *p != *needle) p++;
+             if (!*p) return NULL;
+             if (isSameStr(p, needle)) return p;
+             p++;
+         }
+
+         return NULL;
+     }
+};
+
+int main()
+{
+    Solution s;
+
+    std::cout << "abcdefg cd " << s.strStr("abcdefg", "cd") << std::endl;
+    std::cout << "abcdefg abc " << s.strStr("abcdefg", "abc") << std::endl;
+    std::cout << "abcdefg cdf " << s.strStr("abcdefg", "cdf") << std::endl;
+}

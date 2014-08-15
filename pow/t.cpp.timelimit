@@ -1,0 +1,41 @@
+/*
+   Implement pow(x, n).
+*/
+
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+     double pow(double x, int n) {
+         if (!n) return 1;
+         if (n < 0) return 1/pow(x, -n);
+         double result = 1.0;
+         for (int i = 0; i < n; i++) {
+             result *= x;
+         }
+
+         return result;
+     }
+};
+
+int main()
+{
+    Solution s;
+    double result;
+
+    result = s.pow(3.0, 0);
+    cout << result << endl;
+    result = s.pow(3.0, 1);
+    cout << result << endl;
+    result = s.pow(3.0, -1);
+    cout << result << endl;
+    result = s.pow(0, 3);
+    cout << result << endl;
+    result = s.pow(0, -3);
+    cout << result << endl;
+    result = s.pow(14.95, 3);
+    cout << result << endl;
+    result = s.pow(14.95, -3);
+    cout << result << endl;
+}
