@@ -32,8 +32,10 @@ int main() {
 
     ret = s.convert(str, 3);
     cout << ret << endl;
+
     if (ret.compare("PAHNAPLSIIGYIR") == 0)
         cout << "Pass" << endl;
     else
         cout << "Fail" << endl;
+    return 0;
 }
