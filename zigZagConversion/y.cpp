@@ -21,7 +21,37 @@ using namespace std;
 class Solution {
 public:
     string convert(string s, int nRows) {
-        return s;
+        if (nRows <= 1)
+            return s;
+        string rows[nRows];
+        bool is_down = true;
+        int row = 0;
+        for (int i = 0; i < s.size(); i++) {
+            rows[row].push_back(s[i]);
+            if (is_down) {
+                if (row == nRows - 1) {
+                    is_down = false;
+                    row--;
+                }
+                else {
+                    row++;
+               }
+            }
+            else {
+                if (row == 0) {
+                    is_down = true;
+                    row++;
+                }
+                else {
+                    row--;
+               }
+            }
+        }
+
+        string ret;
+        for (int i = 0; i < nRows; i++)
+           ret += rows[i];
+        return ret;
     }
 };
 
