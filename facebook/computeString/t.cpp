@@ -4,6 +4,7 @@
 */
 
 #include <stdlib.h>
+#include <assert.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -72,4 +73,10 @@ int main() {
     cout << "5+5*6*7+8/2 is: " << cs.computeInputString("5+5*6*7+8/2") << endl;
     cout << "5+35*6*79+8/2 is: " << cs.computeInputString("5+35*6*79+8/2") << endl;
     cout << "5+5+8-2 is: " << cs.computeInputString("5+5+8-2") << endl;
+
+    assert ((5+5*6)            == cs.computeInputString("5+5*6"));
+    assert ((5+5*6*7+8/2)      == cs.computeInputString("5+5*6*7+8/2"));
+    assert ((5+35*6*79+8/2)    == cs.computeInputString("5+35*6*79+8/2"));
+    assert ((5+5+8-2)          == cs.computeInputString("5+5+8-2"));
+    return 0;
 }
