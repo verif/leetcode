@@ -4,6 +4,7 @@
 */
 
 #include <stdlib.h>
+#include <assert.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -22,54 +23,62 @@ public:
     }
 
     int computeInputString(string str) {
+        int res;
         stack<string> stk;
-        int res = 0, i = 0;
+        // - scan through the input string and do the * and / calculations first
+        //   results will be pushed to stack
+        // - then pop the stack and finish the + and - calculation
+        int i = 0;
         while (i < str.length()) {
             if (str[i] == '*' || str[i] == '/') {
+                // assume the left operand is in the stack
+                // and right operand is following operator
                 char c = str[i];
-                string l = stk.top();
-                stk.pop();
                 i++;
-                string r = getNextNumber(str, i);
-                int lv = atoi(l.c_str()), rv = atoi(r.c_str());
-                int val = c == '*' ? lv*rv : lv/rv ;
+                int rv = atoi(getNextNumber(str, i).c_str());
+                int lv = atoi(stk.top().c_str()); stk.pop();
+                int val = (c == '*') ? (lv * rv) : (lv / rv);
                 ostringstream oss;
                 oss << val;
                 stk.push(oss.str());
             }
+            else if (str[i] == '+' || str[i] == '-') {
+                stk.push(str.substr(i, 1));
+                i++;
+            }
             else {
-                if (str[i] == '+' || str[i] == '-') {
-                    stk.push(str.substr(i, 1));
-                    i++;
-                }
-                else {
-                    stk.push(getNextNumber(str, i));
-                }
+                stk.push(getNextNumber(str, i));
             }
         }
-
-        while (!stk.empty()) {
-            int rv = atoi(stk.top().c_str());
-            stk.pop();
-            if (stk.empty()) return rv;
-            string op = stk.top(); stk.pop();
-            int lv = atoi(stk.top().c_str());
-            stk.pop();
-            int tmp = op[0] == '+' ? lv+rv : lv-rv;
+        // do the + and - calculations
+        res = 0;
+        while (stk.size() >= 3) {
+            int rv  = atoi(stk.top().c_str()); stk.pop();
+            char op = stk.top()[0]; stk.pop();
+            int lv  = atoi(stk.top().c_str()); stk.pop();
+            int val = (op == '+') ? lv + rv : lv - rv;
             ostringstream oss;
-            oss << tmp;
+            oss << val;
             stk.push(oss.str());
-            res = tmp;
         }
-
+        if (!stk.empty()) {
+          res = atoi(stk.top().c_str());
+        }
         return res;
     }
 };
 
 int main() {
     ComputeString cs;
+    cout << "1+2+3 is: " << cs.computeInputString("1+2+3") << endl;
     cout << "5+5*6 is: " << cs.computeInputString("5+5*6") << endl;
     cout << "5+5*6*7+8/2 is: " << cs.computeInputString("5+5*6*7+8/2") << endl;
     cout << "5+35*6*79+8/2 is: " << cs.computeInputString("5+35*6*79+8/2") << endl;
     cout << "5+5+8-2 is: " << cs.computeInputString("5+5+8-2") << endl;
+
+    assert ((5+5*6)           == cs.computeInputString("5+5*6"));
+    assert ((5+5*6*7+8/2)      == cs.computeInputString("5+5*6*7+8/2"));
+    assert ((5+35*6*79+8/2)    == cs.computeInputString("5+35*6*79+8/2"));
+    assert ((5+5+8-2)          == cs.computeInputString("5+5+8-2"));
+    return 0;
 }

@@ -69,7 +69,7 @@ public:
 
 int main() {
     ComputeString cs;
-    cout << "5+5*6 is: " << cs.computeInputString("5+5*6") << endl;
+    cout << "5+5*6+ is: " << cs.computeInputString("5+5*6+") << endl;
     cout << "5+5*6*7+8/2 is: " << cs.computeInputString("5+5*6*7+8/2") << endl;
     cout << "5+35*6*79+8/2 is: " << cs.computeInputString("5+35*6*79+8/2") << endl;
     cout << "5+5+8-2 is: " << cs.computeInputString("5+5+8-2") << endl;
