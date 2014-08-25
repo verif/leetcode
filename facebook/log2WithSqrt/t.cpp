@@ -9,6 +9,9 @@ using namespace std;
 class LOG2 {
 public:
     double log2(double val) {
+        if (val < 1.0)
+	    return -log2(1.0/val);
+
         double threshold = 0.000001;
 
         double y = 1, x = 0;
@@ -42,6 +45,7 @@ public:
 int main() {
     LOG2 l;
 
+    cout << "reference: " << log2(0.04) << " Actual: " << l.log2(0.04) << endl;
     cout << "reference: " << log2(16) << " Actual: " << l.log2(16) << endl;
     cout << "reference: " << log2(1024) << " Actual: " << l.log2(1024) << endl;
     cout << "reference: " << log2(65536) << " Actual: " << l.log2(65536) << endl;
