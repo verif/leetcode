@@ -1,3 +1,5 @@
+#include <iostream>
+
 /*
    You are given two linked lists representing two non-negative numbers. The
    digits are stored in reverse order and each of their nodes contain a single
@@ -14,6 +16,13 @@ Output: 7 -> 0 -> 8
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
 public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
@@ -71,3 +80,43 @@ public:
         return ret;
     }
 };
+
+int main() 
+{
+    // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+    // Output: 7 -> 0 -> 8
+    Solution s;
+    ListNode * n1;
+    ListNode * n2;
+    ListNode * p;
+    int a1[] = {2, 4, 3};
+    int a2[] = {5, 6, 4};
+
+    for (int i = 0; i < sizeof(a1)/sizeof(int); i++) {
+        if (i == 0) {
+            n1 = new ListNode(a1[i]);
+            p = n1;
+        }
+        else {
+            p->next = new ListNode(a1[i]);
+            p = p->next;
+        }
+    }
+
+    for (int i = 0; i < sizeof(a2)/sizeof(int); i++) {
+        if (i == 0) {
+            n2 = new ListNode(a2[i]);
+            p = n2;
+        } 
+        else {
+            p->next = new ListNode(a2[i]);
+            p = p->next;
+        }   
+    }       
+    p = s.addTwoNumbers(n1, n2);
+    while (p) {
+        printf("%d", p->val);
+        p = p->next;
+    }
+    printf("\n");
+}

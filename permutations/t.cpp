@@ -24,7 +24,7 @@ public:
                  visited[i] = 1;
                  sol.push_back(num[i]);
                  permuteRecur(num, size-1, results, sol, visited);
-                 sol.pop_back();
+                 sol.resize(sol.size()-1);
                  visited[i] = 0;
              }
          }

@@ -53,10 +53,10 @@ public:
         }
         cur.push_back('0');
         findAllAbbrvRecur(str, pos+1, cur, res);
-        cur.pop_back();
+        cur.erase(cur.length()-1, 1);
         cur.push_back('1');
         findAllAbbrvRecur(str, pos+1, cur, res);
-        cur.pop_back();
+        cur.erase(cur.length()-1, 1);
     }
     void findAllAbbrv(string str, vector<string> &res) {
         string cur;

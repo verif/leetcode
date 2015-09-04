@@ -91,7 +91,7 @@ public:
         for (int i = k; i < n; i++) {
             if (A[i] > ret[0]) {
                 std::pop_heap(ret.begin(), ret.end(), mycmp());
-                ret.pop_back();
+                ret.resize(ret.size()-1);
                 ret.push_back(A[i]);
                 std::push_heap(ret.begin(), ret.end(), mycmp());
             }

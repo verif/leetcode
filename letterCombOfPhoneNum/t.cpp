@@ -30,7 +30,7 @@ public:
              char c = letters[i];
              comb.push_back(c);
              letterCombinationsRecur(digits, idx+1, res, comb, mapping);
-             comb.pop_back();
+             comb.erase(comb.length()-1, 1);
          }
      }
      vector<string> letterCombinations(string digits) {

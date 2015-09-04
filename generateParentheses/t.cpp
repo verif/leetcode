@@ -32,10 +32,10 @@ public:
          else if (left > right) {
              sol.push_back('(');
              placeOneParentheses(left+1, right, n, sol, res);
-             sol.pop_back();
+             sol.erase(sol.length()-1, 1);
              sol.push_back(')');
              placeOneParentheses(left, right+1, n, sol, res);
-             sol.pop_back();
+             sol.erase(sol.length()-1, 1);
          }
      }
      vector<string> generateParenthesis(int n) {

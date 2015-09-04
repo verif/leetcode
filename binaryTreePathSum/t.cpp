@@ -60,7 +60,7 @@ public:
         }
         getPathSumRecur(root->left, sum, buffer, res);
         getPathSumRecur(root->right, sum, buffer, res);
-        buffer.pop_back();
+        buffer.resize(buffer.size() - 1);
     }
 
     vector<vector<int>> getPathSum(TreeNode *root, int sum) {

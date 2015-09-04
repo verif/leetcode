@@ -33,7 +33,7 @@ public:
              i = j == string::npos ? string::npos : i+j+1;
              if (!dir.compare(".")) continue;
              else if (!dir.compare("..")) {
-                 if (!dirs.empty()) dirs.pop_back();
+                 if (!dirs.empty()) dirs.resize(dirs.size()-1);
              }
              else { // regular directory
                  dirs.push_back(dir);

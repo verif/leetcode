@@ -42,7 +42,7 @@ public:
              }
              combinationSum2Recur(num, target-(i-index)*val, next, ret, sol);
              for (int j = 0; j < (i-index); j++) {
-                 sol.pop_back();
+                 sol.resize(sol.size() - 1);
              }
          }
      }
