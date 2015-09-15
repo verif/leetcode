@@ -5,6 +5,7 @@
 */
 
 #include <iostream>
+using namespace std;
 
 class Solution {
 public:
@@ -46,9 +47,12 @@ int main()
     double ret;
 
     int A[] = {1, 3, 5, 7, 9};
-    int B[] = {1, 4, 6, 8, 10};
+    int B[] = {2, 4, 6, 8, 10};
 
-    ret = s.findMedianSortedArrays(A, 5, B, 1);
-    std::cout << ret << std::endl;
+    ret = s.findMedianSortedArrays(A, 5, B, 5);
+    if (ret != 5.5)
+      cout << "FAILED" << endl;
+    else
+      cout << "PASSED" << endl;
 }
 
