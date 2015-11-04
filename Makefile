@@ -158,3 +158,6 @@ all: ${TEST_LIST}
 ${TEST_LIST}::
 	cd $@ && $(MAKE) && pwd && cd ..
 
+clean:
+	rm -f */a.out
+
